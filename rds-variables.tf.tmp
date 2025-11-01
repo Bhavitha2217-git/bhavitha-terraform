@@ -1,0 +1,59 @@
+variable "create_rds" {
+  description = "true to enable create ec2"
+  type        = bool
+  default     = true
+}
+
+variable "rds_engine_version" {
+  default     = "14.13"
+  type        = string
+  description = "Database engine version"
+}
+
+variable "rds_engine" {
+  default     = "postgres"
+  type        = string
+  description = "Database engine version"
+}
+
+variable "rds_instance_type" {
+  default     = "db.t3.small"
+  type        = string
+  description = "Instance type for database instance"
+}
+
+variable "rds_storage_type" {
+  default     = "gp3"
+  type        = string
+  description = "Type of underlying storage for database"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Name of the rds db"
+  default = ""
+}
+
+variable "rds_db_username" {
+  type        = string
+  description = "Name of user inside storage engine"
+  default = ""
+}
+
+variable "rds_db_port" {
+  default     = 5431
+  type        = number
+  description = "Port on which database will accept connections"
+}
+variable "storage_encrypted" {
+  default     = false
+  type        = bool
+  description = "Flag to enable storage encryption"
+}
+
+
+variable "parameter_group" {
+  default     = "default.postgres14"
+  type        = string
+  description = "Database engine parameter group"
+}   

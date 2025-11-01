@@ -1,0 +1,22 @@
+
+output "hostname" {
+  value       = aws_db_instance.this[0].address
+  description = " DNS name of database instance"
+}
+output "db-name" {
+  value       = aws_db_instance.this[0].db_name
+  description = "db name of database instance"
+}
+output "db_password" {
+    value = random_string.this[0].result
+    sensitive = false
+}
+output "port" {
+  value       = aws_db_instance.this[0].port
+  description = "Port of database instance"
+}
+
+output "endpoint" {
+  value       = aws_db_instance.this[0].endpoint
+  description = "Public DNS name and port separated by a colon"
+}

@@ -1,0 +1,13 @@
+vpc-name            = "bhavitha-deployments"
+igw-name            = "bhavitha-deployments-igw"
+subnet-name         = "bhavitha-deployments-public-us-east-1b"
+subnet-name2        = "bhavitha-deployments-public-us-east-1a"
+security-group-name = "bhavitha-deployments-eks-sg"
+rt-name2            = "bhavitha-deployments-public-rtb"
+iam-role-eks        = "bhavitha-deployments-iam-role-eks"
+iam-role-node       = "bhavitha-deployments-iam-role-ec2"
+iam-policy-eks      = "bhavitha-deployments-iam-policy-eks"
+iam-policy-node     = "bhavitha-deployments-iam-policy-node"
+cluster-name        = "bhavitha-deployments-EKS-Cluster"
+eksnode-group-name  = "bhavitha-deployments-Node-Group"
+
