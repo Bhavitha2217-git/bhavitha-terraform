@@ -10,5 +10,7 @@ iam-policy-eks      = "bhavitha-deployments-iam-policy-eks"
 iam-policy-node     = "bhavitha-deployments-iam-policy-node"
 cluster-name        = "bhavitha-deployments-EKS-Cluster"
 eksnode-group-name  = "bhavitha-deployments-Node-Group"
+environment="dev"
+
 
 
