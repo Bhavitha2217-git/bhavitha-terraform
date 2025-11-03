@@ -31,6 +31,7 @@ data "aws_security_group" "sg-default" {
     values = [data.aws_vpc.selected.id]
   }
 }
+
 ##################
 
 
@@ -61,5 +62,6 @@ resource "aws_route_table_association" "rt-association2" {
   route_table_id = aws_route_table.rt2.id
   subnet_id      = aws_subnet.public-subnet2.id
 }
+
 
 
