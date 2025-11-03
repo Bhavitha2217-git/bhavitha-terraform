@@ -1,7 +1,7 @@
 vpc-name            = "bhavitha-deployments"
 igw-name            = "bhavitha-deployments-igw"
-subnet-name         = "bhavitha-deployments-public-us-east-1a-eks"
-subnet-name2        = "bhavitha-deployments-public-us-east-1b-eks"
+subnet-name         = "bhavitha-deployments-public-us-east-1a"
+subnet-name2        = "bhavitha-deployments-public-us-east-1b"
 security-group-name = "bhavitha-deployments-sg"
 rt-name2            = "bhavitha-deployments-public-rtb"
 iam-role-eks        = "bhavitha-deployments-iam-role-eks"
@@ -11,6 +11,7 @@ iam-policy-node     = "bhavitha-deployments-iam-policy-node"
 cluster-name        = "bhavitha-deployments-EKS-Cluster"
 eksnode-group-name  = "bhavitha-deployments-Node-Group"
 environment="dev"
+
 
 
 
