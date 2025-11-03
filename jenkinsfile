@@ -1,0 +1,98 @@
+properties([
+    parameters([
+        string(defaultValue: 'terraform.tfvars', description: 'Specify the file name', name: 'File-Name')
+    ])
+])
+
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+    }
+
+    stages {
+        stage('📥 Clone Repo') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'github_token',
+                    url: 'https://github.com/Bhavitha2217-git/bhavitha-terraform.git'
+            }
+        }
+
+        stage('⚙️ Initialize Terraform') {
+            steps {
+                 dir("${WORKSPACE}") {
+                   
+                        sh 'terraform init -reconfigure -input=false'
+                    }
+                }
+            }
+        
+
+        stage('🔍 Validate Terraform') {
+            steps {
+                 dir("${WORKSPACE}") {
+                   
+                        sh 'terraform validate'
+                    }
+                }
+            }
+        
+
+        stage('📊 Terraform Plan') {
+            steps {
+                 dir("${WORKSPACE}") {
+                   
+                        sh "terraform plan -input=false -var-file=${params['File-Name']} -out=tfplan"
+                    }
+                }
+            }
+        
+
+        stage('🛑 Approval') {
+            steps {
+                script {
+                    def userChoice = input(
+                        id: 'userInput', message: 'Proceed with Terraform Apply?',
+                        parameters: [
+                            choice(choices: ['Apply', 'Abort'], description: 'Choose action', name: 'Action')
+                        ]
+                    )
+                    if (userChoice == 'Abort') {
+                        currentBuild.result = 'ABORTED'
+                        error("❌ Pipeline aborted by user choice.")
+                    } else {
+                        echo "✅ Approval granted. Proceeding with Apply..."
+                    }
+                }
+            }
+        }
+
+        stage('🚀 Terraform Apply') {
+            when {
+                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+            }
+            steps {
+                 dir("${WORKSPACE}") {
+                   
+                        sh "terraform apply -input=false -auto-approve tfplan"
+                    }
+                }
+            }
+        }
+    
+
+    post {
+        success {
+            echo "✅ Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed!"
+        }
+        aborted {
+            echo "⚠️ Pipeline aborted!"
+        }
+    }
+}
