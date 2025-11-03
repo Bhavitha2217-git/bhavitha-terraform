@@ -21,15 +21,7 @@ data "aws_subnet" "subnet" {
 ##############################
 
 data "aws_security_group" "sg-default" {
-  filter {
-    name   = "tag:Name"
-    values = [var.security-group-name]
-  }
-
-  filter {
-    name   = "vpc-id"
-    values = [data.aws_vpc.vpc.id]
-  }
+  id = "sg-0dbc0be731aa63bec"
 }
 
 ##################
@@ -62,6 +54,7 @@ resource "aws_route_table_association" "rt-association2" {
   route_table_id = aws_route_table.rt2.id
   subnet_id      = aws_subnet.public-subnet2.id
 }
+
 
 
 
