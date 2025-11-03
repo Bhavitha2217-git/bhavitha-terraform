@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "bhavitha-deployments-statefiles"
+    bucket         = "bhavitha-deployments-statefile"
     region         = "us-east-1"
-    key            = "bhavitha-deployments-statefiles/EKS-TF/terraform.tfstate"
+    key            = "bhavitha-deployments-statefile/EKS-TF/terraform.tfstate"
    # dynamodb_table = "my-dynamodb-table"
     encrypt        = true
   }
@@ -14,3 +14,4 @@ terraform {
     }
   }
 }
+
